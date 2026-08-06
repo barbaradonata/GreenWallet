@@ -1,0 +1,518 @@
+﻿﻿<!DOCTYPE html><html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+    :root {
+      --glass-fill: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-blur: 20px;
+    }
+    body {
+      background-color: #121214;
+      color: #e5e1e4;
+      font-family: 'Inter', sans-serif;
+    }
+    .glass-card {
+      background: var(--glass-fill);
+      backdrop-filter: blur(var(--glass-blur));
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
+    }
+    .glass-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+    .neon-glow {
+      box-shadow: 0 20px 40px rgba(138, 5, 190, 0.15);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #4f4253;
+      border-radius: 10px;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#8A05BE",
+                    "background": "#121214",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#f7d8ff",
+                    "surface-container-high": "#2a2a2c",
+                    "surface-container-lowest": "#0e0e10",
+                    "inverse-surface": "#e5e1e4",
+                    "secondary": "#10b981",
+                    "secondary-fixed": "#d1fae5",
+                    "secondary-fixed-dim": "#10b981",
+                    "outline-variant": "#4f4253",
+                    "error": "#ffb4ab",
+                    "on-secondary-fixed": "#001f24",
+                    "inverse-primary": "#941cc7",
+                    "surface-container-highest": "#353437",
+                    "outline": "#9b8c9e",
+                    "surface-variant": "#353437",
+                    "on-tertiary-fixed-variant": "#8f0041",
+                    "on-secondary": "#003824",
+                    "on-error": "#690005",
+                    "surface-tint": "#8A05BE",
+                    "error-container": "#93000a",
+                    "tertiary": "#ffb1c3",
+                    "tertiary-container": "#ab0050",
+                    "on-primary-container": "#edb9ff",
+                    "on-tertiary": "#66002c",
+                    "tertiary-fixed": "#ffd9e0",
+                    "tertiary-fixed-dim": "#ffb1c3",
+                    "surface": "#121214",
+                    "surface-container-low": "#1b1b1d",
+                    "on-surface-variant": "#d3c1d5",
+                    "on-tertiary-container": "#ffb8c8",
+                    "on-error-container": "#ffdad6",
+                    "primary-fixed-dim": "#eab2ff",
+                    "on-secondary-container": "#00616d",
+                    "surface-container": "#201f21",
+                    "on-primary-fixed": "#320047",
+                    "on-tertiary-fixed": "#3f0019",
+                    "secondary-container": "#10b981",
+                    "surface-bright": "#39393b",
+                    "on-background": "#e5e1e4",
+                    "on-secondary-fixed-variant": "#004f58",
+                    "on-primary-fixed-variant": "#7400a0",
+                    "surface-dim": "#121214",
+                    "inverse-on-surface": "#303032",
+                    "primary-container": "#8A05BE",
+                    "on-surface": "#e5e1e4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "16px",
+                    "lg": "40px",
+                    "base": "4px",
+                    "xs": "8px",
+                    "md": "24px",
+                    "container-padding": "24px",
+                    "gutter": "20px",
+                    "xl": "64px"
+            },
+            "fontFamily": {
+                    "display-lg": ["\'Plus Jakarta Sans\'", "sans-serif"],
+                    "label-sm": ["\'Geist\'", "sans-serif"],
+                    "title-md": ["\'Plus Jakarta Sans\'", "sans-serif"],
+                    "headline-lg-mobile": ["\'Plus Jakarta Sans\'", "sans-serif"],
+                    "headline-lg": ["\'Plus Jakarta Sans\'", "sans-serif"],
+                    "body-md": ["\'Inter\'", "sans-serif"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- Side Navigation Shell -->
+<nav class="h-screen w-64 fixed left-0 top-0 z-50 bg-surface-container-lowest/80 dark:bg-surface-container-lowest/80 backdrop-blur-md border-r border-outline-variant/10 shadow-xl flex flex-col py-md hidden md:flex">
+<div class="px-md mb-xl">
+<h1 class="font-display-lg text-title-md text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined text-3xl">account_balance_wallet</span>
+    Green Wallet
+</h1>
+<p class="text-on-surface-variant text-xs opacity-70">Pronta para ajudar</p>
+</div>
+<div class="flex-1 space-y-xs">
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300 ease-in-out" href="dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300 ease-in-out" href="nova-despesa.html">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-sm text-label-sm">Transa&ccedil;&otilde;es</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300 ease-in-out" href="calendario.html">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-label-sm text-label-sm">Calend&aacute;rio</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300 ease-in-out" href="metas.html">
+<span class="material-symbols-outlined">ads_click</span>
+<span class="font-label-sm text-label-sm">Metas</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300 ease-in-out" href="categorias.html">
+<span class="material-symbols-outlined">category</span>
+<span class="font-label-sm text-label-sm">Categorias</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300 ease-in-out" href="simulador-compras.html">
+<span class="material-symbols-outlined">shopping_cart_checkout</span>
+<span class="font-label-sm text-label-sm">Simulador</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300 ease-in-out" href="configuracoes.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Configura&ccedil;&otilde;es</span>
+</a>
+</div>
+<div class="px-md mt-auto space-y-sm">
+<button class="w-full bg-gradient-to-r from-secondary to-emerald-600 text-on-secondary font-bold py-xs px-sm rounded-full shadow-lg active:scale-95 transition-transform">
+                Upgrade para Pro
+            </button>
+<div class="space-y-xs pt-md border-t border-outline-variant/10">
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-sm text-label-sm">Suporte</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:text-error transition-colors" href="login.html">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-sm text-label-sm">Sair</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="md:ml-64 min-h-screen flex flex-col">
+<!-- Top Bar Component -->
+<header class="w-full sticky top-0 z-40 bg-surface/60 dark:bg-surface/60 backdrop-blur-xl border-b border-outline-variant/20 shadow-[0_20px_40px_rgba(138,5,190,0.1)] flex justify-between items-center px-lg py-sm">
+<div class="flex items-center gap-md">
+<span class="font-display-lg text-display-lg tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Green Wallet</span>
+<div class="hidden lg:flex items-center bg-surface-container-low px-sm py-xs rounded-full border border-outline-variant/20">
+<span class="material-symbols-outlined text-on-surface-variant mr-xs">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md text-on-surface w-64 placeholder:text-on-surface-variant/50" placeholder="Buscar anal&iacute;ticos..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex gap-xs items-center">
+<!-- Language Selector -->
+<div class="relative group mr-sm">
+<button class="flex items-center gap-1 px-xs py-1 rounded-full border border-outline-variant/30 hover:bg-surface-variant/30 transition-all text-xs font-bold text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">language</span>
+PT
+<span class="material-symbols-outlined text-xs">expand_more</span>
+</button>
+<div class="absolute top-full right-0 mt-2 w-20 glass-card rounded-lg overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+<button class="w-full text-left px-sm py-2 text-xs hover:bg-primary/20 text-on-surface">PT</button>
+<button class="w-full text-left px-sm py-2 text-xs hover:bg-primary/20 text-on-surface">EN</button>
+</div>
+</div>
+<button class="p-xs rounded-full hover:bg-surface-variant/30 text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+<div class="flex items-center gap-sm">
+<div class="text-right hidden sm:block">
+<p class="font-bold text-on-surface">Nick Smith</p>
+<p class="text-xs text-on-surface-variant">N&iacute;vel Investidor</p>
+</div>
+<img class="w-10 h-10 rounded-full border border-primary/30 object-cover" data-alt="A professional studio portrait of a young male financial executive with short groomed hair and glasses, wearing a dark navy turtleneck. The lighting is soft and directional, creating a clean corporate aesthetic with a subtle bokeh of a modern office in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA_B0l114C1RWCGl88ZG_n_lHTni-wLnCqZAeMUvVxdse-wZ88WOECw_qrIGUTVZOSb_wl9hQqN0O_AvRQJ9WLuvfbHfw4ixE8gxu4G4z-pV6xmgqDB7gk34XCjDw6T_vRdmQ1AkjKLpbbO1jUKBFGuJBQ4elOTTeGNphCZfsz5uG3p8oXj-An8MDmR_s_V6C7OyV8e17nPOcYcrybmZrgPDJisyUMii_DgabDd006BxbDggbTIl0NfP27hWJHZ7F1fccIJdzvLJU">
+</div>
+</div>
+</header>
+<!-- Search & Filter Controls -->
+<div class="p-lg space-y-md max-w-7xl mx-auto w-full">
+<div class="flex flex-col lg:flex-row gap-md items-start lg:items-center justify-between">
+<div class="space-y-base">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Transa&ccedil;&otilde;es</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Busca profunda e insights hist&oacute;ricos</p>
+</div>
+<!-- View Controls -->
+<div class="flex items-center bg-surface-container-high p-xs rounded-full border border-outline-variant/10">
+<button class="px-md py-xs rounded-full bg-primary text-white font-label-sm transition-all shadow-md">Lista</button>
+<button class="px-md py-xs rounded-full text-on-surface-variant font-label-sm hover:text-on-surface transition-all">An&aacute;lise</button>
+<button class="px-md py-xs rounded-full text-on-surface-variant font-label-sm hover:text-on-surface transition-all">Exportar</button>
+</div>
+</div>
+<!-- Advanced Filter Panel -->
+<div class="glass-card rounded-lg p-md space-y-md">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
+<!-- Date Range -->
+<div class="space-y-xs">
+<label class="font-label-sm text-on-surface-variant px-xs">Per&iacute;odo</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-xs top-1/2 -translate-y-1/2 text-secondary text-sm">calendar_today</span>
+<select class="w-full bg-surface-container-lowest border border-outline-variant/20 rounded-md py-xs pl-lg pr-sm font-body-md text-on-surface appearance-none focus:ring-primary">
+<option>&Uacute;ltimos 30 Dias</option>
+<option>Este M&ecirc;s</option>
+<option>Per&iacute;odo Personalizado</option>
+<option>Todo o Per&iacute;odo</option>
+</select>
+</div>
+</div>
+<!-- Value Range -->
+<div class="space-y-xs">
+<label class="font-label-sm text-on-surface-variant px-xs">Intervalo de Valor</label>
+<div class="flex items-center gap-xs">
+<input class="w-full bg-surface-container-lowest border border-outline-variant/20 rounded-md py-xs px-sm font-body-md text-on-surface focus:ring-primary" placeholder="Min" type="number">
+<span class="text-on-surface-variant">-</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/20 rounded-md py-xs px-sm font-body-md text-on-surface focus:ring-primary" placeholder="Max" type="number">
+</div>
+</div>
+<!-- Category Filter -->
+<div class="space-y-xs">
+<label class="font-label-sm text-on-surface-variant px-xs">Categoria</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-xs top-1/2 -translate-y-1/2 text-secondary text-sm">category</span>
+<select class="w-full bg-surface-container-lowest border border-outline-variant/20 rounded-md py-xs pl-lg pr-sm font-body-md text-on-surface appearance-none focus:ring-primary">
+<option>Todas Categorias</option>
+<option>Entretenimento</option>
+<option>Investimentos</option>
+<option>Compras</option>
+<option>Viagens</option>
+</select>
+</div>
+</div>
+<!-- Type / Action -->
+<div class="space-y-xs">
+<label class="font-label-sm text-on-surface-variant px-xs">Tipo</label>
+<div class="flex gap-xs">
+<button class="flex-1 py-xs rounded-md bg-primary/10 border border-primary/20 text-primary font-label-sm hover:bg-primary/20 transition-all">Despesa</button>
+<button class="flex-1 py-xs rounded-md bg-surface-container-lowest border border-outline-variant/20 text-on-surface-variant font-label-sm hover:bg-surface-variant/20 transition-all">Receita</button>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-xs pt-xs border-t border-outline-variant/10">
+<span class="bg-secondary/10 text-secondary px-sm py-xs rounded-full text-label-sm flex items-center gap-xs border border-secondary/20">
+            #assinatura <button class="material-symbols-outlined text-xs">close</button>
+</span>
+<span class="bg-secondary/10 text-secondary px-sm py-xs rounded-full text-label-sm flex items-center gap-xs border border-secondary/20">
+            #cloud_computing <button class="material-symbols-outlined text-xs">close</button>
+</span>
+<button class="text-on-surface-variant text-label-sm px-sm py-xs hover:text-secondary transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-xs">add</span> Adicionar Tag
+          </button>
+<div class="ml-auto flex items-center gap-sm">
+<button class="text-on-surface-variant font-label-sm hover:text-on-surface">Resetar Tudo</button>
+<button class="bg-primary px-md py-xs rounded-md text-white font-title-md text-[14px] shadow-lg hover:brightness-110 active:scale-95 transition-all">Aplicar Filtros</button>
+</div>
+</div>
+</div>
+<!-- Results Header & Grouping -->
+<div class="flex items-center justify-between mt-xl mb-md">
+<h3 class="font-title-md text-title-md text-on-surface">84 Resultados encontrados</h3>
+<div class="flex items-center gap-sm">
+<span class="text-on-surface-variant font-label-sm">Agrupar por:</span>
+<div class="flex bg-surface-container-low rounded-lg p-1 border border-outline-variant/10">
+<button class="px-sm py-1 rounded-md text-label-sm text-on-surface-variant hover:text-on-surface">Dia</button>
+<button class="px-sm py-1 rounded-md text-label-sm bg-surface-container-highest text-secondary font-bold">Semana</button>
+<button class="px-sm py-1 rounded-md text-label-sm text-on-surface-variant hover:text-on-surface">M&ecirc;s</button>
+<button class="px-sm py-1 rounded-md text-label-sm text-on-surface-variant hover:text-on-surface">Categoria</button>
+</div>
+</div>
+</div>
+<!-- Transaction List Section -->
+<div class="space-y-lg">
+<!-- Group 1 -->
+<section class="space-y-sm">
+<div class="flex items-center gap-sm">
+<h4 class="font-label-sm text-secondary tracking-widest uppercase">Esta Semana</h4>
+<div class="h-[1px] flex-1 bg-gradient-to-r from-outline-variant/30 to-transparent"></div>
+<span class="text-label-sm text-on-surface-variant">-R$ 1.240,00</span>
+</div>
+<div class="space-y-xs">
+<!-- Item 1 -->
+<div class="glass-card rounded-md p-md flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-gradient-to-br from-secondary/20 to-primary/20 flex items-center justify-center text-2xl border border-white/5">
+                  🎬
+                </div>
+<div class="flex flex-col">
+<span class="font-title-md text-[16px] text-on-surface group-hover:text-primary transition-colors">Cinema &amp; IMAX</span>
+<span class="text-label-sm text-on-surface-variant">Entretenimento • 14 Out, 2024</span>
+</div>
+</div>
+<div class="flex items-center gap-xl">
+<div class="hidden md:flex flex-wrap gap-xs max-w-[150px] justify-end">
+<span class="px-sm py-0.5 rounded-full bg-surface-container-highest text-[10px] text-on-surface-variant border border-outline-variant/20">Lazer</span>
+<span class="px-sm py-0.5 rounded-full bg-surface-container-highest text-[10px] text-on-surface-variant border border-outline-variant/20">Pessoal</span>
+</div>
+<div class="text-right">
+<p class="font-title-md text-[18px] text-on-surface">-R$ 42,00</p>
+<p class="text-[10px] text-error font-medium uppercase tracking-tighter">Pendente</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="glass-card rounded-md p-md flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-primary-container/20 flex items-center justify-center text-2xl border border-white/5">
+                  ☁️
+                </div>
+<div class="flex flex-col">
+<span class="font-title-md text-[16px] text-on-surface group-hover:text-primary transition-colors">CloudServices Pro</span>
+<span class="text-label-sm text-on-surface-variant">Tecnologia • 12 Out, 2024</span>
+</div>
+</div>
+<div class="flex items-center gap-xl">
+<div class="hidden md:flex flex-wrap gap-xs max-w-[150px] justify-end">
+<span class="px-sm py-0.5 rounded-full bg-surface-container-highest text-[10px] text-on-surface-variant border border-outline-variant/20">Recorrente</span>
+</div>
+<div class="text-right">
+<p class="font-title-md text-[18px] text-on-surface">-R$ 299,00</p>
+<p class="text-[10px] text-secondary font-medium uppercase tracking-tighter">Liquidado</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="glass-card rounded-md p-md flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-gradient-to-br from-secondary/20 to-secondary-fixed/20 flex items-center justify-center text-2xl border border-white/5">
+                  📈
+                </div>
+<div class="flex flex-col">
+<span class="font-title-md text-[16px] text-on-surface group-hover:text-primary transition-colors">Pagamento de Dividendos - ETF</span>
+<span class="text-label-sm text-on-surface-variant">Investimento • 11 Out, 2024</span>
+</div>
+</div>
+<div class="flex items-center gap-xl">
+<div class="hidden md:flex flex-wrap gap-xs max-w-[150px] justify-end">
+<span class="px-sm py-0.5 rounded-full bg-surface-container-highest text-[10px] text-on-surface-variant border border-outline-variant/20">Passivo</span>
+</div>
+<div class="text-right">
+<p class="font-title-md text-[18px] text-secondary">+R$ 850,45</p>
+<p class="text-[10px] text-secondary font-medium uppercase tracking-tighter">Liquidado</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Group 2 -->
+<section class="space-y-sm">
+<div class="flex items-center gap-sm">
+<h4 class="font-label-sm text-on-surface-variant tracking-widest uppercase">Semana Passada</h4>
+<div class="h-[1px] flex-1 bg-gradient-to-r from-outline-variant/30 to-transparent"></div>
+<span class="text-label-sm text-on-surface-variant">-R$ 3.110,20</span>
+</div>
+<div class="space-y-xs">
+<!-- Item 4 -->
+<div class="glass-card rounded-md p-md flex items-center justify-between group cursor-pointer opacity-80 hover:opacity-100">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-gradient-to-br from-tertiary/20 to-tertiary-container/20 flex items-center justify-center text-2xl border border-white/5">
+                  🍜
+                </div>
+<div class="flex flex-col">
+<span class="font-title-md text-[16px] text-on-surface group-hover:text-primary transition-colors">Umami Dining</span>
+<span class="text-label-sm text-on-surface-variant">Alimenta&ccedil;&atilde;o • 08 Out, 2024</span>
+</div>
+</div>
+<div class="flex items-center gap-xl">
+<div class="hidden md:flex flex-wrap gap-xs max-w-[150px] justify-end">
+<span class="px-sm py-0.5 rounded-full bg-surface-container-highest text-[10px] text-on-surface-variant border border-outline-variant/20">Jantar</span>
+</div>
+<div class="text-right">
+<p class="font-title-md text-[18px] text-on-surface">-R$ 124,50</p>
+<p class="text-[10px] text-secondary font-medium uppercase tracking-tighter">Liquidado</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+<!-- Item 5 -->
+<div class="glass-card rounded-md p-md flex items-center justify-between group cursor-pointer opacity-80 hover:opacity-100">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center text-2xl border border-white/5">
+                  ✈️
+                </div>
+<div class="flex flex-col">
+<span class="font-title-md text-[16px] text-on-surface group-hover:text-primary transition-colors">AeroJet Airways</span>
+<span class="text-label-sm text-on-surface-variant">Viagem • 05 Out, 2024</span>
+</div>
+</div>
+<div class="flex items-center gap-xl">
+<div class="hidden md:flex flex-wrap gap-xs max-w-[150px] justify-end">
+<span class="px-sm py-0.5 rounded-full bg-surface-container-highest text-[10px] text-on-surface-variant border border-outline-variant/20">F&eacute;rias</span>
+</div>
+<div class="text-right">
+<p class="font-title-md text-[18px] text-on-surface">-R$ 1.840,00</p>
+<p class="text-[10px] text-secondary font-medium uppercase tracking-tighter">Liquidado</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Load More / Pagination -->
+<div class="flex flex-col items-center gap-md py-xl">
+<button class="px-xl py-xs rounded-full bg-surface-container-high border border-outline-variant/30 text-on-surface-variant font-label-sm hover:border-primary/50 hover:text-primary transition-all">
+          Carregar mais 50 transa&ccedil;&otilde;es
+        </button>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-[0.2em]">Exibindo 5 de 84</p>
+</div>
+</div>
+<!-- Footer Component -->
+<footer class="w-full py-md mt-xl bg-surface-container-lowest border-t border-outline-variant/10">
+<div class="flex justify-between items-center px-xl max-w-7xl mx-auto w-full">
+<div class="flex flex-col gap-xs">
+<p class="font-title-md text-title-md text-primary">Green Wallet</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 Precision Finance</p>
+</div>
+<div class="flex gap-lg">
+<a class="text-on-surface-variant font-label-sm hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Pol&iacute;tica de Privacidade</a>
+<a class="text-on-surface-variant font-label-sm hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Termos de Servi&ccedil;o</a>
+<a class="text-on-surface-variant font-label-sm hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Seguran&ccedil;a</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- Mascot Bubble -->
+<div class="fixed bottom-md right-md z-50 flex flex-col items-end gap-sm">
+<div class="glass-card p-sm rounded-lg shadow-2xl max-w-xs border-secondary/20 neon-glow relative">
+<div class="absolute -bottom-2 right-6 w-4 h-4 bg-surface-container-high border-b border-r border-outline-variant/20 rotate-45"></div>
+<p class="text-[13px] text-on-surface leading-relaxed">
+        Notei que seus gastos com **Entretenimento** subiram 12% esta semana em compara&ccedil;&atilde;o com a anterior. Quer ver um detalhamento por local?
+      </p>
+</div>
+<div class="w-16 h-16 rounded-full bg-gradient-to-tr from-secondary to-primary p-[2px] cursor-pointer hover:scale-110 active:scale-95 transition-all shadow-xl group">
+<div class="w-full h-full rounded-full bg-background flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-3xl group-hover:animate-bounce" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+</div>
+</div>
+<script>
+    // Subtle interactivity
+    document.querySelectorAll('.glass-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-2px)';
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
+      });
+    });
+
+    // Simple Tab Switch Simulation
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach(t => t.classList.remove('bg-surface-container-highest', 'text-secondary', 'font-bold'));
+        tab.classList.add('bg-surface-container-highest', 'text-secondary', 'font-bold');
+      });
+    });
+  </script>
+
+<!-- Bot&atilde;o de Comando de Voz Global -->
+<a href="comando-de-voz.html" class="fixed bottom-lg right-lg bg-primary p-md rounded-full shadow-[0_0_30px_rgba(138,5,190,0.4)] z-[100] group hover:scale-105 active:scale-95 transition-all flex items-center justify-center">
+    <div class="absolute inset-0 rounded-full bg-primary opacity-50 animate-ping"></div>
+    <span class="material-symbols-outlined text-on-primary text-2xl relative z-10">mic</span>
+</a>
+\n</body></html>

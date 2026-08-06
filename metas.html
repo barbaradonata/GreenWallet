@@ -1,0 +1,464 @@
+<!DOCTYPE html><html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Green Wallet | Metas Financeiras</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Geist:wght@400;500;600&amp;family=Inter:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease-in-out;
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.12);
+            transform: translateY(-4px);
+        }
+        .glow-primary {
+            box-shadow: 0 20px 40px rgba(138, 5, 190, 0.15);
+        }
+        .progress-glow {
+            filter: drop-shadow(0 0 8px currentColor);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #121214;
+            color: #e5e1e4;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#8A05BE",
+                    "background": "#121214",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#f7d8ff",
+                    "surface-container-high": "#2a2a2c",
+                    "surface-container-lowest": "#0e0e10",
+                    "inverse-surface": "#e5e1e4",
+                    "secondary": "#10b981",
+                    "secondary-fixed": "#d1fae5",
+                    "secondary-fixed-dim": "#10b981",
+                    "outline-variant": "#4f4253",
+                    "error": "#ffb4ab",
+                    "on-secondary-fixed": "#001f24",
+                    "inverse-primary": "#941cc7",
+                    "surface-container-highest": "#353437",
+                    "outline": "#9b8c9e",
+                    "surface-variant": "#353437",
+                    "on-tertiary-fixed-variant": "#8f0041",
+                    "on-secondary": "#003824",
+                    "on-error": "#690005",
+                    "surface-tint": "#8A05BE",
+                    "error-container": "#93000a",
+                    "tertiary": "#ffb1c3",
+                    "tertiary-container": "#ab0050",
+                    "on-primary-container": "#edb9ff",
+                    "on-tertiary": "#66002c",
+                    "tertiary-fixed": "#ffd9e0",
+                    "tertiary-fixed-dim": "#ffb1c3",
+                    "surface": "#121214",
+                    "surface-container-low": "#1b1b1d",
+                    "on-surface-variant": "#d3c1d5",
+                    "on-tertiary-container": "#ffb8c8",
+                    "on-error-container": "#ffdad6",
+                    "primary-fixed-dim": "#eab2ff",
+                    "on-secondary-container": "#00616d",
+                    "surface-container": "#201f21",
+                    "on-primary-fixed": "#320047",
+                    "on-tertiary-fixed": "#3f0019",
+                    "secondary-container": "#10b981",
+                    "surface-bright": "#39393b",
+                    "on-background": "#e5e1e4",
+                    "on-secondary-fixed-variant": "#004f58",
+                    "on-primary-fixed-variant": "#7400a0",
+                    "surface-dim": "#121214",
+                    "inverse-on-surface": "#303032",
+                    "primary-container": "#8A05BE",
+                    "on-surface": "#e5e1e4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "16px",
+                    "lg": "40px",
+                    "base": "4px",
+                    "xs": "8px",
+                    "md": "24px",
+                    "container-padding": "24px",
+                    "gutter": "20px",
+                    "xl": "64px"
+            },
+            "fontFamily": {
+                    "display-lg": ["\'Plus Jakarta Sans\'", "sans-serif"],
+                    "label-sm": ["\'Geist\'", "sans-serif"],
+                    "title-md": ["\'Plus Jakarta Sans\'", "sans-serif"],
+                    "headline-lg-mobile": ["\'Plus Jakarta Sans\'", "sans-serif"],
+                    "headline-lg": ["\'Plus Jakarta Sans\'", "sans-serif"],
+                    "body-md": ["\'Inter\'", "sans-serif"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-body-md text-on-surface selection:bg-primary/30">
+<!-- Side Navigation Bar -->
+<nav class="h-screen w-64 fixed left-0 top-0 z-50 bg-surface-container-lowest/80 dark:bg-surface-container-lowest/80 backdrop-blur-md border-r border-outline-variant/10 shadow-xl flex flex-col py-md hidden md:flex">
+<div class="px-md mb-xl">
+<h1 class="font-display-lg text-title-md text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined text-3xl">account_balance_wallet</span>
+    Green Wallet
+</h1>
+<p class="text-on-surface-variant text-xs opacity-70">Pronta para ajudar</p>
+</div>
+<div class="flex-1 space-y-xs">
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300 ease-in-out" href="dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300 ease-in-out" href="nova-despesa.html">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-sm text-label-sm">Transa&ccedil;&otilde;es</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300 ease-in-out" href="calendario.html">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-label-sm text-label-sm">Calend&aacute;rio</span>
+</a>
+<a class="flex items-center gap-sm bg-primary/10 text-primary border-r-4 border-primary px-md py-xs transition-all duration-300 ease-in-out" href="metas.html">
+<span class="material-symbols-outlined">ads_click</span>
+<span class="font-label-sm text-label-sm">Metas</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300 ease-in-out" href="categorias.html">
+<span class="material-symbols-outlined">category</span>
+<span class="font-label-sm text-label-sm">Categorias</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300 ease-in-out" href="simulador-compras.html">
+<span class="material-symbols-outlined">shopping_cart_checkout</span>
+<span class="font-label-sm text-label-sm">Simulador</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300 ease-in-out" href="configuracoes.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Configura&ccedil;&otilde;es</span>
+</a>
+</div>
+<div class="px-md mt-auto space-y-sm">
+<button class="w-full bg-gradient-to-r from-secondary to-emerald-600 text-on-secondary font-bold py-xs px-sm rounded-full shadow-lg active:scale-95 transition-transform">
+                Upgrade para Pro
+            </button>
+<div class="space-y-xs pt-md border-t border-outline-variant/10">
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-sm text-label-sm">Suporte</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:text-error transition-colors" href="login.html">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-sm text-label-sm">Sair</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 min-h-screen relative overflow-hidden">
+<!-- Top App Bar -->
+<header class="w-full sticky top-0 z-40 bg-surface/60 dark:bg-surface/60 backdrop-blur-xl border-b border-outline-variant/20 shadow-[0_20px_40px_rgba(138,5,190,0.1)] flex justify-between items-center px-lg py-sm">
+<div class="flex items-center gap-md">
+<span class="font-display-lg text-display-lg tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Green Wallet</span>
+<div class="hidden lg:flex items-center bg-surface-container-low px-sm py-xs rounded-full border border-outline-variant/20">
+<span class="material-symbols-outlined text-on-surface-variant mr-xs">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md text-on-surface w-64 placeholder:text-on-surface-variant/50" placeholder="Buscar anal&iacute;ticos..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex gap-xs items-center">
+<!-- Language Selector -->
+<div class="relative group mr-sm">
+<button class="flex items-center gap-1 px-xs py-1 rounded-full border border-outline-variant/30 hover:bg-surface-variant/30 transition-all text-xs font-bold text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">language</span>
+PT
+<span class="material-symbols-outlined text-xs">expand_more</span>
+</button>
+<div class="absolute top-full right-0 mt-2 w-20 glass-card rounded-lg overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+<button class="w-full text-left px-sm py-2 text-xs hover:bg-primary/20 text-on-surface">PT</button>
+<button class="w-full text-left px-sm py-2 text-xs hover:bg-primary/20 text-on-surface">EN</button>
+</div>
+</div>
+<button class="p-xs rounded-full hover:bg-surface-variant/30 text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+<div class="flex items-center gap-sm">
+<div class="text-right hidden sm:block">
+<p class="font-bold text-on-surface">Nick Smith</p>
+<p class="text-xs text-on-surface-variant">N&iacute;vel Investidor</p>
+</div>
+<img class="w-10 h-10 rounded-full border border-primary/30 object-cover" data-alt="A professional studio portrait of a young male financial executive with short groomed hair and glasses, wearing a dark navy turtleneck. The lighting is soft and directional, creating a clean corporate aesthetic with a subtle bokeh of a modern office in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA_B0l114C1RWCGl88ZG_n_lHTni-wLnCqZAeMUvVxdse-wZ88WOECw_qrIGUTVZOSb_wl9hQqN0O_AvRQJ9WLuvfbHfw4ixE8gxu4G4z-pV6xmgqDB7gk34XCjDw6T_vRdmQ1AkjKLpbbO1jUKBFGuJBQ4elOTTeGNphCZfsz5uG3p8oXj-An8MDmR_s_V6C7OyV8e17nPOcYcrybmZrgPDJisyUMii_DgabDd006BxbDggbTIl0NfP27hWJHZ7F1fccIJdzvLJU">
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<div class="p-lg">
+<!-- Ambient background glow -->
+<div class="fixed top-1/4 -right-20 w-96 h-96 bg-primary/5 blur-[120px] -z-10 rounded-full"></div>
+<div class="fixed bottom-1/4 -left-20 w-80 h-80 bg-secondary/10 blur-[100px] -z-10 rounded-full"></div>
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h1 class="font-display-lg text-display-lg text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400 mb-xs">Metas Financeiras</h1>
+<p class="text-on-surface-variant font-body-md max-w-xl">Acompanhe seus sonhos e marcos. Seu progresso &eacute; a base da sua liberdade financeira.</p>
+</div>
+<button onclick="document.getElementById('modalNovaMeta').classList.remove('hidden')" class="flex items-center gap-xs bg-primary text-on-primary px-md py-sm rounded-full font-bold shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
+<span class="material-symbols-outlined">add</span>
+                Criar Nova Meta
+            </button>
+</div>
+<!-- Summary Stats Bento -->
+<div class="grid grid-cols-12 gap-gutter mb-xl">
+<div class="col-span-12 md:col-span-4 glass-card p-md rounded-lg glow-primary flex flex-col justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-outline mb-xs uppercase">OBJETIVO TOTAL</p>
+<h3 class="font-headline-lg text-headline-lg">R$ 142.500,00</h3>
+</div>
+<div class="mt-md flex items-center gap-xs text-primary">
+<span class="material-symbols-outlined">trending_up</span>
+<span class="text-label-sm font-bold">+12.4% desde o m&ecirc;s passado</span>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 glass-card p-md rounded-lg flex flex-col justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-outline mb-xs uppercase">TOTAL ECONOMIZADO</p>
+<h3 class="font-headline-lg text-headline-lg text-primary">R$ 64.280,00</h3>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full mt-md overflow-hidden">
+<div class="h-full bg-primary w-[45%] rounded-full progress-glow"></div>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 glass-card p-md rounded-lg flex items-center gap-md">
+<div class="h-16 w-16 rounded-full bg-secondary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-4xl">celebration</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-outline mb-xs uppercase">Pr&oacute;ximo MARCO</p>
+<h3 class="font-title-md text-title-md">Reserva de Emerg&ecirc;ncia</h3>
+<p class="text-xs text-secondary font-bold">Faltam apenas R$ 1.200!</p>
+</div>
+</div>
+</div>
+<!-- Goals Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-xl">
+<!-- Goal Card: Tesla -->
+<div class="glass-card rounded-lg overflow-hidden flex flex-col h-full group">
+<div class="h-48 w-full relative">
+<img class="w-full h-full object-cover" data-alt="Futuristic white electric car" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0MplrU_-pSEYgLNCbdY0MhzwSUpw8dqfWeFpIxxvNd0fEsa07_IPZcZ_Um0S1950PKIHWn5iwRA8ZsVscSUnFY9mttv2qu8B-5aLpa5nVlAqgIyzXDus2R4uQ9gwTv3Cv6mYkFLh6W2Nkkc_KWwVkP1Whi9MrZj13MR5p23RxHgOP052Kou7WhQa-nCLPBDxPx04njYrYHu1thK5oTiI57MELDCqruyMAq2zgEa5c0b_OyQYcUd5rOmFJQ1NbL2p3gfKz21KzcP4">
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+<div class="absolute top-sm right-sm bg-secondary/20 backdrop-blur-md px-sm py-xs rounded-full border border-secondary/30">
+<span class="text-xs font-bold text-secondary">Prioridade Alta</span>
+</div>
+</div>
+<div class="p-md flex flex-col flex-1">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-title-md text-title-md mb-xs">Tesla Model 3</h3>
+<div class="flex items-center gap-xs text-outline font-label-sm">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+                                Dezembro 2025
+                            </div>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:rotate-12 transition-transform">electric_car</span>
+</div>
+<div class="mt-auto">
+<div class="flex justify-between mb-xs">
+<span class="text-label-sm font-bold text-on-surface-variant">R$ 32.000 / R$ 55.000</span>
+<span class="text-label-sm font-bold text-primary">58%</span>
+</div>
+<div class="h-3 w-full bg-surface-container-highest rounded-full overflow-hidden mb-xs">
+<div class="h-full bg-gradient-to-r from-primary to-emerald-400 w-[58%] rounded-full progress-glow"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant mb-md flex justify-between">
+    <span>Ritmo atual: +R$ 1.500/m&ecirc;s</span>
+    <span class="text-primary">Previs&atilde;o: Outubro 2025</span>
+</p>
+<button class="w-full py-xs border border-outline-variant/30 rounded-full font-bold text-label-sm hover:bg-primary/10 hover:border-primary/50 transition-all">
+                            Gerenciar Contribui&ccedil;&otilde;es
+                        </button>
+</div>
+</div>
+</div>
+<!-- Goal Card: Japan Trip -->
+<div class="glass-card rounded-lg overflow-hidden flex flex-col h-full group">
+<div class="h-48 w-full relative">
+<img class="w-full h-full object-cover" data-alt="Japan Tokyo landscape" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArczu3sFMSEmX7KFc11U6cp8VtoxBZExZI5WSjRou9akeOnoH0vWId3FxNYkLnrWtUiFQdlsZuFCEvFKVWGx9yRQNxZVTibYBGQkoL82mwqoQrwLwIy4CkNEClEVTa_JYbAEukJMORlt08u5gynSC_yz-HauPQGFLD1O73QiMshDQ95sC-5mx70x9H59R1IeNScjJjEUlIaeHZ20adDCfbEen6w7Bf6TaeWaXvCxNuac86tLX0cD-uHZJ6jlBHfoFRWv3HVFHcU5U">
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+</div>
+<div class="p-md flex flex-col flex-1">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-title-md text-title-md mb-xs">Viagem Jap&atilde;o</h3>
+<div class="flex items-center gap-xs text-outline font-label-sm">
+<span class="material-symbols-outlined text-sm">flight</span>
+                                Abril 2025
+                            </div>
+</div>
+<span class="material-symbols-outlined text-secondary group-hover:scale-110 transition-transform">map</span>
+</div>
+<div class="mt-auto">
+<div class="flex justify-between mb-xs">
+<span class="text-label-sm font-bold text-on-surface-variant">R$ 8.450 / R$ 12.000</span>
+<span class="text-label-sm font-bold text-secondary">70%</span>
+</div>
+<div class="h-3 w-full bg-surface-container-highest rounded-full overflow-hidden mb-xs">
+<div class="h-full bg-secondary w-[70%] rounded-full progress-glow"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant mb-md flex justify-between">
+    <span>Ritmo atual: +R$ 800/m&ecirc;s</span>
+    <span class="text-secondary">Previs&atilde;o: Mar&ccedil;o 2025</span>
+</p>
+<button class="w-full py-xs border border-outline-variant/30 rounded-full font-bold text-label-sm hover:bg-secondary/10 hover:border-secondary/50 transition-all">
+                            Gerenciar Contribui&ccedil;&otilde;es
+                        </button>
+</div>
+</div>
+</div>
+<!-- Goal Card: Emergency Fund -->
+<div class="glass-card rounded-lg overflow-hidden flex flex-col h-full group">
+<div class="h-48 w-full relative">
+<img class="w-full h-full object-cover" data-alt="Crystalline stability" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1ylMuZycHNvJrOyzA_WraC2sQ8dd3KM8c7aBRicrD-zk0ksTERl1gu56_2nQTRE82XPMx3IaN6g7LZsDkwWfBJEMSMid7pvQBEHzqJH3CS0gL0E3vRPCWtyZCAdg5xTIDl8FvMXp7ErJTeZOvDnlO6r8E0nIbw7KEJvLH8DVaabI1jCyhnP7ThiB4oL8JVyP4f3ObMJF8yjdl8YzeQEwwVaXxmRZkoFWE5E0c1c7ftqe9aozTKgS0gwZoFc_Z9oNy4sEhA_03ag0">
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+</div>
+<div class="p-md flex flex-col flex-1">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-title-md text-title-md mb-xs">Fundo de Emerg&ecirc;ncia</h3>
+<div class="flex items-center gap-xs text-outline font-label-sm">
+<span class="material-symbols-outlined text-sm">security</span>
+                                Meta Cont&iacute;nua
+                            </div>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:rotate-[-12deg] transition-transform">shield</span>
+</div>
+<div class="mt-auto">
+<div class="flex justify-between mb-xs">
+<span class="text-label-sm font-bold text-on-surface-variant">R$ 18.800 / R$ 20.000</span>
+<span class="text-label-sm font-bold text-primary">94%</span>
+</div>
+<div class="h-3 w-full bg-surface-container-highest rounded-full overflow-hidden mb-md">
+<div class="h-full bg-primary w-[94%] rounded-full progress-glow"></div>
+</div>
+<button class="w-full py-xs border border-outline-variant/30 rounded-full font-bold text-label-sm hover:bg-primary/10 hover:border-primary/50 transition-all">
+                            Gerenciar Contribui&ccedil;&otilde;es
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Mascot Placement -->
+<div class="fixed bottom-xl right-xl z-50 flex items-end gap-md pointer-events-none">
+<div class="glass-card bg-surface-container-lowest/90 px-md py-sm rounded-lg mb-lg border-primary/20 glow-primary pointer-events-auto relative max-w-xs animate-float">
+<p class="text-body-md font-medium text-on-surface leading-relaxed">
+                    "Se voc&ecirc; economizar R$ 200/m&ecirc;s em Lazer (que est&aacute; acima da m&eacute;dia), atingir&aacute; a meta do <strong>Tesla Model 3</strong> cerca de 2 meses antes do previsto!"
+                </p>
+<!-- Tail of the speech bubble -->
+<div class="absolute bottom-[-10px] right-sm w-4 h-4 bg-surface-container-lowest border-r border-b border-primary/20 rotate-45"></div>
+</div>
+<div class="h-24 w-24 relative pointer-events-auto flex items-center justify-center">
+    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/20 hover:scale-110 transition-transform cursor-pointer">
+        <span class="material-symbols-outlined text-on-primary text-3xl">smart_toy</span>
+    </div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="md:ml-64 bg-surface-container-lowest border-t border-outline-variant/10 w-full py-md mt-xl">
+<div class="flex justify-between items-center px-xl max-w-7xl mx-auto w-full">
+<div class="flex flex-col gap-base">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-xl">account_balance_wallet</span>
+<span class="font-title-md text-title-md text-primary">Green Wallet</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 Precision Finance</p>
+</div>
+<div class="flex gap-lg">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Pol&iacute;tica de Privacidade</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Termos de Servi&ccedil;o</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Seguran&ccedil;a</a>
+</div>
+</div>
+</footer>
+<!-- Interactive Logic -->
+<script>
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+
+        // Simple parallax for the background glow
+        window.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            const glows = document.querySelectorAll('.fixed.-z-10');
+            glows.forEach((glow, index) => {
+                const moveX = (index + 1) * 20 * (x - 0.5);
+                const moveY = (index + 1) * 20 * (y - 0.5);
+                glow.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+        });
+    </script>
+<!-- Modal Nova Meta -->
+<div id="modalNovaMeta" class="hidden fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-center justify-center p-md transition-opacity">
+    <div class="glass-surface p-lg rounded-xl max-w-md w-full relative border border-outline-variant/30 glow-primary">
+        <button onclick="document.getElementById('modalNovaMeta').classList.add('hidden')" class="absolute top-md right-md text-on-surface-variant hover:text-white">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <h2 class="font-headline-lg text-title-md mb-md text-on-surface">Criar Nova Meta</h2>
+        <div class="space-y-md">
+            <div><label class="text-label-sm text-on-surface-variant block mb-1">Nome da Meta</label>
+            <input type="text" class="w-full bg-surface-container-highest p-sm rounded-lg border-none text-on-surface outline-none focus:ring-1 focus:ring-primary" placeholder="Ex: Carro Novo"></div>
+            <div><label class="text-label-sm text-on-surface-variant block mb-1">Valor Alvo (R$)</label>
+            <input type="number" class="w-full bg-surface-container-highest p-sm rounded-lg border-none text-on-surface outline-none focus:ring-1 focus:ring-primary" placeholder="0.00"></div>
+            <div><label class="text-label-sm text-on-surface-variant block mb-1">Data Prevista</label>
+            <input type="month" class="w-full bg-surface-container-highest p-sm rounded-lg border-none text-on-surface outline-none focus:ring-1 focus:ring-primary"></div>
+            <div><label class="text-label-sm text-on-surface-variant block mb-1">Prioridade</label>
+            <select class="w-full bg-surface-container-highest p-sm rounded-lg border-none text-on-surface outline-none focus:ring-1 focus:ring-primary">
+                <option>Alta</option>
+                <option>M&eacute;dia</option>
+                <option>Baixa</option>
+            </select></div>
+            <button onclick="document.getElementById('modalNovaMeta').classList.add('hidden')" class="w-full mt-sm py-sm rounded-lg font-bold text-on-primary bg-primary shadow-xl">Salvar Meta</button>
+        </div>
+    </div>
+</div>
+</body></html>

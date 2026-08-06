@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html><html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Login | Green Wallet</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Geist:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .glow-button {
+            box-shadow: 0 0 20px rgba(138, 5, 190, 0.3);
+            transition: all 0.3s ease;
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 30px rgba(138, 5, 190, 0.5);
+            transform: translateY(-1px);
+        }
+        .mascot-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+        .input-gradient-border {
+            position: relative;
+            background: rgba(14, 14, 16, 0.5);
+        }
+        .input-gradient-border::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #10b981, transparent);
+            opacity: 0.5;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#10b981",
+                        "background": "#121214",
+                        "on-primary": "#003824",
+                        "primary-fixed": "#d1fae5",
+                        "surface-container-high": "#2a2a2c",
+                        "surface-container-lowest": "#0e0e10",
+                        "inverse-surface": "#e5e1e4",
+                        "secondary": "#8A05BE",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#8A05BE",
+                        "outline-variant": "#3c4a42",
+                        "error": "#ffb4ab",
+                        "surface": "#121214",
+                        "surface-container-low": "#1b1b1d",
+                        "on-surface-variant": "#bbcabf",
+                        "surface-container": "#201f21",
+                        "surface-container-highest": "#353437",
+                        "on-surface": "#e5e1e4",
+                        "on-background": "#e5e1e4",
+                        "surface-bright": "#39393b",
+                        "surface-dim": "#121214",
+                        "inverse-on-surface": "#303032",
+                        "primary-container": "#10b981",
+                        "tertiary": "#eab2ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "16px",
+                        "lg": "40px",
+                        "base": "4px",
+                        "xs": "8px",
+                        "md": "24px",
+                        "container-padding": "24px",
+                        "gutter": "20px",
+                        "xl": "64px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["\'Plus Jakarta Sans\'", "sans-serif"],
+                        "label-sm": ["\'Geist\'", "sans-serif"],
+                        "title-md": ["\'Plus Jakarta Sans\'", "sans-serif"],
+                        "headline-lg": ["\'Plus Jakarta Sans\'", "sans-serif"],
+                        "body-md": ["\'Inter\'", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen selection:bg-primary/30 selection:text-primary overflow-hidden">
+<!-- Atmospheric Background Shader -->
+<div class="fixed inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-tr from-background via-transparent to-primary/5"></div>
+</div>
+<!-- Layout Container -->
+<main class="relative z-10 flex min-h-screen w-full">
+<!-- Login Sidebar (Form Area) -->
+<section class="w-full lg:w-[480px] bg-surface-container-lowest/80 backdrop-blur-3xl border-r border-outline-variant/10 p-md lg:p-xl flex flex-col justify-between">
+<!-- Logo Section -->
+<div class="mb-xl flex justify-between items-start">
+<div>
+<div class="flex items-center gap-xs">
+<span class="font-display-lg text-headline-lg tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">Green Wallet</span>
+</div>
+<p class="font-label-sm text-on-surface-variant mt-xs">Finan&ccedil;as de Precis&atilde;o para Mentes Modernas</p>
+</div>
+<!-- Language Selector -->
+<div class="relative group">
+<button class="flex items-center gap-1 px-xs py-1 rounded-full border border-outline-variant/30 hover:bg-surface-variant/30 transition-all text-xs font-bold text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">language</span>
+                        PT
+                        <span class="material-symbols-outlined text-xs">expand_more</span>
+</button>
+<div class="absolute top-full right-0 mt-2 w-20 glass-card rounded-lg overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+<button class="w-full text-left px-sm py-2 text-xs hover:bg-primary/20 text-on-surface">PT</button>
+<button class="w-full text-left px-sm py-2 text-xs hover:bg-primary/20 text-on-surface">EN</button>
+</div>
+</div>
+</div>
+<!-- Form Body -->
+<div class="flex-1 flex flex-col justify-center">
+<h1 class="font-headline-lg text-headline-lg mb-xs">Bem-vindo de volta</h1>
+<p class="text-on-surface-variant mb-md">Acesse com seguran&ccedil;a seu painel de clareza financeira.</p>
+<!-- Google Auth -->
+<button class="w-full py-sm px-md glass-card rounded-lg flex items-center justify-center gap-sm transition-all hover:scale-[1.02] active:scale-95 mb-md group">
+<svg class="w-5 h-5" viewBox="0 0 24 24">
+<path d="M12 5.04c1.94 0 3.51.68 4.75 1.81l3.51-3.51C18.1 1.42 15.29 0 12 0 7.31 0 3.25 2.69 1.24 6.63l4.08 3.16c.96-2.88 3.66-4.75 6.68-4.75z" fill="#EA4335"></path>
+<path d="M23.49 12.27c0-.81-.07-1.59-.2-2.35H12v4.45h6.44c-.28 1.48-1.12 2.73-2.38 3.58l3.69 2.87c2.16-1.99 3.41-4.91 3.41-8.55z" fill="#4285F4"></path>
+<path d="M5.32 14.21c-.24-.71-.38-1.47-.38-2.26s.14-1.55.38-2.26L1.24 6.63C.45 8.22 0 10.06 0 12s.45 3.78 1.24 5.37l4.08-3.16z" fill="#FBBC05"></path>
+<path d="M12 24c3.24 0 5.95-1.07 7.94-2.91l-3.69-2.87c-1.11.74-2.53 1.18-4.25 1.18-3.02 0-5.72-1.87-6.68-4.75l-4.08 3.16C3.25 21.31 7.31 24 12 24z" fill="#34A853"></path>
+</svg>
+<span class="font-title-md text-body-md text-on-surface">Entrar com Google</span>
+</button>
+<div class="flex items-center gap-sm mb-md">
+<div class="h-[1px] flex-1 bg-outline-variant/30"></div>
+<span class="font-label-sm text-on-surface-variant">ou use seu e-mail</span>
+<div class="h-[1px] flex-1 bg-outline-variant/30"></div>
+</div>
+<!-- Email Form -->
+<form class="space-y-md">
+<div class="space-y-xs">
+<label class="font-label-sm text-on-surface-variant block ml-xs">E-mail</label>
+<input class="w-full bg-surface-container-low border-b border-outline-variant focus:border-primary outline-none py-sm px-xs transition-colors placeholder:text-on-surface-variant/40" placeholder="nome@empresa.com" type="email">
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between items-center px-xs">
+<label class="font-label-sm text-on-surface-variant">Senha</label>
+<a class="font-label-sm text-primary hover:underline decoration-primary/30" href="#">Esqueceu a senha?</a>
+</div>
+<input class="w-full bg-surface-container-low border-b border-outline-variant focus:border-primary outline-none py-sm px-xs transition-colors placeholder:text-on-surface-variant/40" placeholder="••••••••" type="password">
+</div>
+<button class="w-full py-sm rounded-full bg-secondary text-on-secondary font-title-md glow-button hover:opacity-90 active:scale-95 transition-all mt-md" type="button">
+                        Entrar
+                    </button>
+</form>
+<div class="mt-xl text-center space-y-md">
+<button onclick="window.location.href='dashboard.html'" class="w-full py-xs px-sm rounded-full border border-outline-variant/30 text-on-surface font-label-sm hover:bg-surface-variant/20 transition-all active:scale-95">
+                        Experimentar
+                    </button>
+<p class="font-label-sm text-on-surface-variant">
+                        Novo no Green Wallet? <a class="text-primary font-bold hover:underline" href="#">Criar uma conta</a>
+</p>
+</div>
+</div>
+<!-- Footer Small -->
+<footer class="mt-xl flex justify-between items-center opacity-60">
+<span class="font-label-sm">© 2024 Green Wallet</span>
+<div class="flex gap-sm">
+<a class="font-label-sm hover:text-primary transition-colors" href="#">Termos</a>
+<a class="font-label-sm hover:text-primary transition-colors" href="#">Privacidade</a>
+</div>
+</footer>
+</section>
+<!-- Illustration Area (Right Side) -->
+<section class="hidden lg:flex flex-1 items-center justify-center relative overflow-hidden">
+<!-- Background Mascot Element -->
+<div class="absolute inset-0 flex items-center justify-center opacity-10 blur-3xl scale-150">
+<div class="w-[600px] h-[600px] bg-primary rounded-full mix-blend-screen"></div>
+</div>
+<!-- Central Content -->
+<div class="relative z-20 flex flex-col items-center">
+<!-- Mascot Image -->
+<div class="mascot-float relative">
+<img class="w-[450px] h-[450px] object-contain drop-shadow-[0_0_50px_rgba(138,5,190,0.4)] rounded-3xl" data-alt="A futuristic, friendly financial assistant mascot with sleek, rounded 3D geometry and neon highlights." src="assets/greenz_login_ai.png">
+<!-- Floating Speech Bubble -->
+<div class="absolute -top-4 -right-12 glass-card rounded-lg p-sm shadow-xl max-w-[200px] mascot-float" style="animation-delay: -1s;">
+<div class="flex gap-xs items-center">
+<span class="material-symbols-outlined text-primary scale-75">auto_awesome</span>
+<p class="font-label-sm text-on-surface">"Pronto para dissipar a n&eacute;voa das suas finan&ccedil;as?"</p>
+</div>
+<div class="absolute -bottom-2 left-4 w-4 h-4 bg-surface-container-high rotate-45 border-r border-b border-white/10"></div>
+</div>
+</div>
+<!-- Descriptive Text -->
+<div class="mt-lg text-center max-w-md px-md">
+<h2 class="font-display-lg text-headline-lg text-on-surface leading-tight">Domine seu dinheiro <br><span class="text-primary">sem o barulho.</span></h2>
+<p class="font-body-md text-on-surface-variant/80 mt-sm">Junte-se a mais de 50.000 usu&aacute;rios que usam Greenz AI para automatizar economias e visualizar o futuro.</p>
+</div>
+</div>
+<!-- Bottom Floating Chips (Atmospheric) -->
+<div class="absolute bottom-xl left-xl right-xl flex justify-around opacity-40">
+<div class="glass-card px-md py-xs rounded-full flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="font-label-sm">Criptografia banc&aacute;ria</span>
+</div>
+<div class="glass-card px-md py-xs rounded-full flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="font-label-sm">Rastreamento em tempo real</span>
+</div>
+<div class="glass-card px-md py-xs rounded-full flex items-center gap-xs">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">insights</span>
+<span class="font-label-sm">An&aacute;lise preditiva</span>
+</div>
+</div>
+</section>
+</main>
+<script>
+        // Micro-interaction for form focus
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('scale-[1.01]');
+                input.parentElement.style.transition = 'transform 0.2s ease';
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+
+        // Mouse follow effect for the illustration section
+        const illustrationSection = document.querySelector('section:last-child');
+        illustrationSection.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const centerX = illustrationSection.clientWidth / 2;
+            const centerY = illustrationSection.clientHeight / 2;
+            
+            const moveX = (clientX - centerX) / 30;
+            const moveY = (clientY - centerY) / 30;
+            
+            const mascot = document.querySelector('.mascot-float');
+            mascot.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+    </script>
+</body></html>

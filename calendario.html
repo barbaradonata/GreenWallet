@@ -1,0 +1,579 @@
+<!DOCTYPE html><html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Green Wallet | Calend&aacute;rio Financeiro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Geist:wght@400;500;600&amp;family=Inter:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-surface {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-surface-elevated {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .glow-secondary {
+            box-shadow: 0 20px 40px rgba(138, 5, 190, 0.2);
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+        body {
+            background-color: #121214;
+            color: #e5e1e4;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8A05BE;
+            border-radius: 10px;
+        }
+        .emerald-glow {
+            filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.4));
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#8A05BE",
+                    "background": "#121214",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#f7d8ff",
+                    "surface-container-high": "#2a2a2c",
+                    "surface-container-lowest": "#0e0e10",
+                    "inverse-surface": "#e5e1e4",
+                    "secondary": "#10b981",
+                    "secondary-fixed": "#d1fae5",
+                    "secondary-fixed-dim": "#10b981",
+                    "outline-variant": "#4f4253",
+                    "error": "#ffb4ab",
+                    "on-secondary-fixed": "#001f24",
+                    "inverse-primary": "#941cc7",
+                    "surface-container-highest": "#353437",
+                    "outline": "#9b8c9e",
+                    "surface-variant": "#353437",
+                    "on-tertiary-fixed-variant": "#8f0041",
+                    "on-secondary": "#003824",
+                    "on-error": "#690005",
+                    "surface-tint": "#8A05BE",
+                    "error-container": "#93000a",
+                    "tertiary": "#ffb1c3",
+                    "tertiary-container": "#ab0050",
+                    "on-primary-container": "#edb9ff",
+                    "on-tertiary": "#66002c",
+                    "tertiary-fixed": "#ffd9e0",
+                    "tertiary-fixed-dim": "#ffb1c3",
+                    "surface": "#121214",
+                    "surface-container-low": "#1b1b1d",
+                    "on-surface-variant": "#d3c1d5",
+                    "on-tertiary-container": "#ffb8c8",
+                    "on-error-container": "#ffdad6",
+                    "primary-fixed-dim": "#eab2ff",
+                    "on-secondary-container": "#00616d",
+                    "surface-container": "#201f21",
+                    "on-primary-fixed": "#320047",
+                    "on-tertiary-fixed": "#3f0019",
+                    "secondary-container": "#10b981",
+                    "surface-bright": "#39393b",
+                    "on-background": "#e5e1e4",
+                    "on-secondary-fixed-variant": "#004f58",
+                    "on-primary-fixed-variant": "#7400a0",
+                    "surface-dim": "#121214",
+                    "inverse-on-surface": "#303032",
+                    "primary-container": "#8A05BE",
+                    "on-surface": "#e5e1e4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "16px",
+                    "lg": "40px",
+                    "base": "4px",
+                    "xs": "8px",
+                    "md": "24px",
+                    "container-padding": "24px",
+                    "gutter": "20px",
+                    "xl": "64px"
+            },
+            "fontFamily": {
+                    "display-lg": ["\'Plus Jakarta Sans\'", "sans-serif"],
+                    "label-sm": ["\'Geist\'", "sans-serif"],
+                    "title-md": ["\'Plus Jakarta Sans\'", "sans-serif"],
+                    "headline-lg-mobile": ["\'Plus Jakarta Sans\'", "sans-serif"],
+                    "headline-lg": ["\'Plus Jakarta Sans\'", "sans-serif"],
+                    "body-md": ["\'Inter\'", "sans-serif"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen overflow-x-hidden">
+<!-- Sidebar Navigation -->
+<nav class="h-screen w-64 fixed left-0 top-0 z-50 bg-surface-container-lowest/80 dark:bg-surface-container-lowest/80 backdrop-blur-md border-r border-outline-variant/10 shadow-xl flex flex-col py-md hidden md:flex">
+<div class="px-md mb-xl">
+<h1 class="font-display-lg text-title-md text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined text-3xl">account_balance_wallet</span>
+    Green Wallet
+</h1>
+<p class="text-on-surface-variant text-xs opacity-70">Pronta para ajudar</p>
+</div>
+<div class="flex-1 space-y-xs">
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300 ease-in-out" href="dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300 ease-in-out" href="nova-despesa.html">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-sm text-label-sm">Transa&ccedil;&otilde;es</span>
+</a>
+<a class="flex items-center gap-sm bg-secondary/10 text-secondary border-r-4 border-secondary px-md py-xs transition-all duration-300 ease-in-out" href="calendario.html">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-label-sm text-label-sm">Calend&aacute;rio</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300 ease-in-out" href="metas.html">
+<span class="material-symbols-outlined">ads_click</span>
+<span class="font-label-sm text-label-sm">Metas</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300 ease-in-out" href="categorias.html">
+<span class="material-symbols-outlined">category</span>
+<span class="font-label-sm text-label-sm">Categorias</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300 ease-in-out" href="simulador-compras.html">
+<span class="material-symbols-outlined">shopping_cart_checkout</span>
+<span class="font-label-sm text-label-sm">Simulador</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:bg-surface-variant/20 hover:text-on-surface transition-all duration-300 ease-in-out" href="configuracoes.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Configura&ccedil;&otilde;es</span>
+</a>
+</div>
+<div class="px-md mt-auto space-y-sm">
+<button class="w-full bg-gradient-to-r from-secondary to-emerald-600 text-on-secondary font-bold py-xs px-sm rounded-full shadow-lg active:scale-95 transition-transform">
+                Upgrade para Pro
+            </button>
+<div class="space-y-xs pt-md border-t border-outline-variant/10">
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-sm text-label-sm">Suporte</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-md py-xs hover:text-error transition-colors" href="login.html">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-sm text-label-sm">Sair</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="md:ml-64 min-h-screen relative">
+<!-- Top App Bar -->
+<header class="w-full sticky top-0 z-40 bg-surface/60 dark:bg-surface/60 backdrop-blur-xl border-b border-outline-variant/20 shadow-[0_20px_40px_rgba(138,5,190,0.1)] flex justify-between items-center px-lg py-sm">
+<div class="flex items-center gap-md">
+<span class="font-display-lg text-display-lg tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Green Wallet</span>
+<div class="hidden lg:flex items-center bg-surface-container-low px-sm py-xs rounded-full border border-outline-variant/20">
+<span class="material-symbols-outlined text-on-surface-variant mr-xs">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md text-on-surface w-64 placeholder:text-on-surface-variant/50" placeholder="Buscar anal&iacute;ticos..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex gap-xs items-center">
+<!-- Language Selector -->
+<div class="relative group mr-sm">
+<button class="flex items-center gap-1 px-xs py-1 rounded-full border border-outline-variant/30 hover:bg-surface-variant/30 transition-all text-xs font-bold text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">language</span>
+PT
+<span class="material-symbols-outlined text-xs">expand_more</span>
+</button>
+<div class="absolute top-full right-0 mt-2 w-20 glass-card rounded-lg overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+<button class="w-full text-left px-sm py-2 text-xs hover:bg-primary/20 text-on-surface">PT</button>
+<button class="w-full text-left px-sm py-2 text-xs hover:bg-primary/20 text-on-surface">EN</button>
+</div>
+</div>
+<button class="p-xs rounded-full hover:bg-surface-variant/30 text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+<div class="flex items-center gap-sm">
+<div class="text-right hidden sm:block">
+<p class="font-bold text-on-surface">Nick Smith</p>
+<p class="text-xs text-on-surface-variant">N&iacute;vel Investidor</p>
+</div>
+<img class="w-10 h-10 rounded-full border border-primary/30 object-cover" data-alt="A professional studio portrait of a young male financial executive with short groomed hair and glasses, wearing a dark navy turtleneck. The lighting is soft and directional, creating a clean corporate aesthetic with a subtle bokeh of a modern office in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA_B0l114C1RWCGl88ZG_n_lHTni-wLnCqZAeMUvVxdse-wZ88WOECw_qrIGUTVZOSb_wl9hQqN0O_AvRQJ9WLuvfbHfw4ixE8gxu4G4z-pV6xmgqDB7gk34XCjDw6T_vRdmQ1AkjKLpbbO1jUKBFGuJBQ4elOTTeGNphCZfsz5uG3p8oXj-An8MDmR_s_V6C7OyV8e17nPOcYcrybmZrgPDJisyUMii_DgabDd006BxbDggbTIl0NfP27hWJHZ7F1fccIJdzvLJU">
+</div>
+</div>
+</header>
+<!-- Content Grid -->
+<section class="max-w-7xl mx-auto p-lg grid grid-cols-12 gap-lg">
+<!-- Calendar Module -->
+<div class="col-span-12 lg:col-span-8 glass-surface rounded-lg p-md glow-secondary">
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-lg gap-md">
+<div class="flex items-center gap-sm">
+<h2 class="font-headline-lg text-headline-lg">Outubro 2024</h2>
+<div class="flex gap-xs">
+<button class="p-xs glass-surface rounded-full hover:bg-surface-variant/40 transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-xs glass-surface rounded-full hover:bg-surface-variant/40 transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex gap-xs bg-surface-container-low p-xs rounded-full border border-outline-variant/20">
+<button id="btnViewDia" onclick="toggleView('dia')" class="px-md py-xs rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface">Dia</button>
+<button id="btnViewSemana" onclick="toggleView('semana')" class="px-md py-xs rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface">Semana</button>
+<button id="btnViewMes" onclick="toggleView('mes')" class="px-md py-xs rounded-full font-label-sm text-label-sm bg-secondary text-white font-bold">M&ecirc;s</button>
+</div>
+</div>
+<div id="viewMesWrapper">
+<div class="calendar-grid border-b border-outline-variant/20 mb-xs">
+<div class="py-xs text-center font-label-sm text-on-surface-variant uppercase tracking-widest">Dom</div>
+<div class="py-xs text-center font-label-sm text-on-surface-variant uppercase tracking-widest">Seg</div>
+<div class="py-xs text-center font-label-sm text-on-surface-variant uppercase tracking-widest">Ter</div>
+<div class="py-xs text-center font-label-sm text-on-surface-variant uppercase tracking-widest">Qua</div>
+<div class="py-xs text-center font-label-sm text-on-surface-variant uppercase tracking-widest">Qui</div>
+<div class="py-xs text-center font-label-sm text-on-surface-variant uppercase tracking-widest">Sex</div>
+<div class="py-xs text-center font-label-sm text-on-surface-variant uppercase tracking-widest">S&aacute;b</div>
+</div>
+<div class="calendar-grid gap-xs">
+<!-- Days placeholders -->
+<div class="aspect-square p-xs text-on-surface-variant/30 font-label-sm opacity-40">29</div>
+<div class="aspect-square p-xs text-on-surface-variant/30 font-label-sm opacity-40">30</div>
+<div onclick="document.getElementById('modalResumoDia').classList.remove('hidden');" class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer transition-all flex flex-col group">
+<span class="font-label-sm text-on-surface-variant">1</span>
+<div class="flex gap-[2px] mt-auto">
+<span class="w-1.5 h-1.5 rounded-full bg-primary emerald-glow"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</div>
+<div onclick="document.getElementById('modalResumoDia').classList.remove('hidden');" class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer transition-all flex flex-col group">
+<span class="font-label-sm text-on-surface-variant">2</span>
+</div>
+<div class="aspect-square p-xs glass-surface-elevated border-secondary/40 rounded-md cursor-pointer transition-all flex flex-col group">
+<span class="font-label-sm text-secondary font-bold">3</span>
+<div class="flex gap-[2px] mt-auto">
+<span class="w-1.5 h-1.5 rounded-full bg-primary emerald-glow"></span>
+</div>
+</div>
+<div onclick="document.getElementById('modalResumoDia').classList.remove('hidden');" class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer transition-all flex flex-col group">
+<span class="font-label-sm text-on-surface-variant">4</span>
+<div class="flex gap-[2px] mt-auto">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+</div>
+</div>
+<!-- Week rows continue -->
+<div class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer transition-all flex flex-col"><span class="font-label-sm text-on-surface-variant">5</span></div>
+<div class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer transition-all flex flex-col"><span class="font-label-sm text-on-surface-variant">6</span></div>
+<div class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer transition-all flex flex-col"><span class="font-label-sm text-on-surface-variant">7</span></div>
+<div class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer transition-all flex flex-col"><span class="font-label-sm text-on-surface-variant">8</span></div>
+<div onclick="document.getElementById('modalResumoDia').classList.remove('hidden');" class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer transition-all flex flex-col group">
+<span class="font-label-sm text-on-surface-variant">9</span>
+<div class="flex gap-[2px] mt-auto"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span></div>
+</div>
+<!-- Mascot context cell -->
+<div class="aspect-square p-xs glass-surface border-primary/30 rounded-md hover:bg-surface-variant/20 cursor-pointer transition-all flex flex-col relative group">
+<span class="font-label-sm text-on-surface-variant">10</span>
+<div class="flex gap-[2px] mt-auto">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<!-- Mascot Speech Bubble -->
+<div class="absolute -top-12 -right-24 w-48 z-50 animate-bounce pointer-events-none">
+<div class="bg-primary p-xs rounded-lg rounded-bl-none text-on-primary font-label-sm shadow-xl flex items-center gap-xs">
+                            <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">shopping_cart</span>
+                            "O supermercado ganhou de novo"
+                        </div>
+</div>
+</div>
+<!-- Additional days -->
+<div class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer transition-all flex flex-col"><span class="font-label-sm text-on-surface-variant">11</span></div>
+<div class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer transition-all flex flex-col"><span class="font-label-sm text-on-surface-variant">12</span></div>
+<div class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer transition-all flex flex-col"><span class="font-label-sm text-on-surface-variant">13</span></div>
+<div class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer transition-all flex flex-col"><span class="font-label-sm text-on-surface-variant">14</span></div>
+<div class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer transition-all flex flex-col"><span class="font-label-sm text-on-surface-variant">15</span></div>
+<div class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer transition-all flex flex-col relative" onclick="document.getElementById('modalResumoDia').classList.remove('hidden');">
+<span class="font-label-sm text-on-surface-variant">16</span>
+<div class="flex gap-[2px] mt-auto">
+<span class="w-1.5 h-1.5 rounded-full bg-primary emerald-glow"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<!-- Day Popover -->
+<div class="hidden absolute top-full left-0 mt-xs w-56 glass-surface-elevated rounded-lg p-sm z-50 shadow-2xl scale-100 origin-top transition-transform" id="popover-16">
+<div class="text-label-sm font-bold border-b border-outline-variant/20 pb-xs mb-xs">Transa&ccedil;&otilde;es 16 Out</div>
+<div class="space-y-xs">
+<div class="flex justify-between items-center">
+<div class="flex flex-col">
+<span class="text-[11px] font-bold">Depsito Sal&aacute;rio</span>
+<span class="text-[9px] text-on-surface-variant">Trabalho S.A.</span>
+</div>
+<span class="text-primary text-[11px] font-bold">+R$4.200</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex flex-col">
+<span class="text-[11px] font-bold">Netflix</span>
+<span class="text-[9px] text-on-surface-variant">Assinatura</span>
+</div>
+<span class="text-secondary text-[11px] font-bold">-R$55,90</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Row continues for full month grid -->
+<div onclick="document.getElementById('modalResumoDia').classList.remove('hidden');" class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer flex flex-col"><span class="font-label-sm text-on-surface-variant">17</span></div>
+<div onclick="document.getElementById('modalResumoDia').classList.remove('hidden');" class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer flex flex-col"><span class="font-label-sm text-on-surface-variant">18</span></div>
+<div onclick="document.getElementById('modalResumoDia').classList.remove('hidden');" class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer flex flex-col"><span class="font-label-sm text-on-surface-variant">19</span></div>
+<div onclick="document.getElementById('modalResumoDia').classList.remove('hidden');" class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer flex flex-col"><span class="font-label-sm text-on-surface-variant">20</span></div>
+<div onclick="document.getElementById('modalResumoDia').classList.remove('hidden');" class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer flex flex-col"><span class="font-label-sm text-on-surface-variant">21</span></div>
+<div onclick="document.getElementById('modalResumoDia').classList.remove('hidden');" class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer flex flex-col"><span class="font-label-sm text-on-surface-variant">22</span></div>
+<div onclick="document.getElementById('modalResumoDia').classList.remove('hidden');" class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer flex flex-col"><span class="font-label-sm text-on-surface-variant">23</span></div>
+<div onclick="document.getElementById('modalResumoDia').classList.remove('hidden');" class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer flex flex-col"><span class="font-label-sm text-on-surface-variant">24</span></div>
+<div onclick="document.getElementById('modalResumoDia').classList.remove('hidden');" class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer flex flex-col"><span class="font-label-sm text-on-surface-variant">25</span></div>
+<div onclick="document.getElementById('modalResumoDia').classList.remove('hidden');" class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer flex flex-col"><span class="font-label-sm text-on-surface-variant">26</span></div>
+<div onclick="document.getElementById('modalResumoDia').classList.remove('hidden');" class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer flex flex-col"><span class="font-label-sm text-on-surface-variant">27</span></div>
+<div onclick="document.getElementById('modalResumoDia').classList.remove('hidden');" class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer flex flex-col"><span class="font-label-sm text-on-surface-variant">28</span></div>
+<div onclick="document.getElementById('modalResumoDia').classList.remove('hidden');" class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer flex flex-col"><span class="font-label-sm text-on-surface-variant">29</span></div>
+<div onclick="document.getElementById('modalResumoDia').classList.remove('hidden');" class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer flex flex-col"><span class="font-label-sm text-on-surface-variant">30</span></div>
+<div onclick="document.getElementById('modalResumoDia').classList.remove('hidden');" class="aspect-square p-xs glass-surface rounded-md hover:bg-surface-variant/20 cursor-pointer flex flex-col"><span class="font-label-sm text-on-surface-variant">31</span></div>
+</div>
+</div>
+<!-- ListView (Dia) - hidden by default -->
+<div id="viewDia" class="hidden flex-col gap-sm">
+    <div class="p-md glass-surface rounded-lg flex items-center justify-between border-l-4 border-error glow-secondary">
+        <div class="flex flex-col">
+            <span class="font-bold text-on-surface">Aluguel da Casa</span>
+            <span class="text-xs text-on-surface-variant">Conta a Vencer</span>
+        </div>
+        <div class="text-right">
+            <span class="font-bold text-error block">-R$ 1.850,00</span>
+            <span class="text-[10px] text-on-surface-variant">Hoje</span>
+        </div>
+    </div>
+    <div class="p-md glass-surface rounded-lg flex items-center justify-between border-l-4 border-primary glow-secondary">
+        <div class="flex flex-col">
+            <span class="font-bold text-on-surface">Adiantamento Salarial</span>
+            <span class="text-xs text-on-surface-variant">Recebimento Previsto</span>
+        </div>
+        <div class="text-right">
+            <span class="font-bold text-primary block">+R$ 2.500,00</span>
+            <span class="text-[10px] text-on-surface-variant">Amanh&atilde;</span>
+        </div>
+    </div>
+    <div class="p-md glass-surface rounded-lg flex items-center justify-between border-l-4 border-secondary glow-secondary">
+        <div class="flex flex-col">
+            <span class="font-bold text-on-surface">Viagem Jap&atilde;o</span>
+            <span class="text-xs text-on-surface-variant">Aporte na Meta</span>
+        </div>
+        <div class="text-right">
+            <span class="font-bold text-secondary block">-R$ 500,00</span>
+            <span class="text-[10px] text-on-surface-variant">25 Out</span>
+        </div>
+    </div>
+</div>
+<!-- End ListView -->
+</div>
+<!-- Insights Side Panel -->
+<div class="col-span-12 lg:col-span-4 space-y-lg">
+<!-- Mascot & Summary -->
+<div class="glass-surface p-md rounded-lg relative overflow-hidden group border-primary/20">
+<div class="relative z-10">
+<div class="flex items-center gap-sm mb-md">
+<div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md">Greenz AI</h3>
+<p class="text-label-sm text-on-surface-variant">Previs&atilde;o de Outubro</p>
+</div>
+</div>
+<p class="text-body-md text-on-surface mb-lg leading-relaxed">
+                        "Voc&ecirc; tem <span class="text-secondary font-bold">3 contas importantes</span> vencendo na pr&oacute;xima semana com grande concentra&ccedil;&atilde;o no dia 10. Al&eacute;m disso, seus gastos em 'Mercado' est&atilde;o <span class="text-primary font-bold">12% acima</span> do normal. Sugiro provisionar R$ 1.500 no fluxo de caixa desta semana!"
+                    </p>
+<div class="space-y-sm">
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-emerald-400 w-[70%]" style="box-shadow: 0 0 10px rgba(16,185,129,0.5)"></div>
+</div>
+<div class="flex justify-between text-label-sm">
+<span class="text-on-surface-variant">Limite Mensal</span>
+<span class="text-on-surface font-bold">70% Atingido</span>
+</div>
+</div>
+</div>
+<!-- Decorative Mascot Image -->
+<div class="absolute -bottom-4 -right-4 w-32 h-32 opacity-20 group-hover:opacity-40 transition-opacity pointer-events-none">
+<img class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfH0jAwGUTaiy1cQLZJ1rk5KclVbKhHb4tLSsPP3nHvKox18c2XsiOxNOokzBMPsvXbA-SKwuVdfepmR2VTINHge4QbrKCqYwbBSRCA4LlLSpfGgpNUQSzABTdDrmincQ2Nn2x_xLukcqMB5AOMLnrH-J__imn3gVXKTN94ECauvU1rYRzJcAfuTumIudUoJvGOAPIgz3feEPRshCCpxaQA9G5UCu2GrM4AFFUeM11rW27LDxMJxGj0ZBOaB2jmWyJuvNzY_uuVk0">
+</div>
+</div>
+<!-- Legend & Highlights -->
+<div class="glass-surface p-md rounded-lg">
+<h3 class="font-title-md text-title-md mb-md">Legenda</h3>
+<div class="space-y-md">
+<div class="flex items-center gap-md">
+<span class="w-3 h-3 rounded-full bg-primary emerald-glow"></span>
+<div class="flex-1">
+<p class="text-label-sm font-bold text-on-surface">Receitas</p>
+<p class="text-[10px] text-on-surface-variant">Sal&aacute;rio, Freelance, Dividendos</p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="w-3 h-3 rounded-full bg-secondary shadow-[0_0_8px_#8A05BE]"></span>
+<div class="flex-1">
+<p class="text-label-sm font-bold text-on-surface">Despesas</p>
+<p class="text-[10px] text-on-surface-variant">Compras di&aacute;rias, Assinaturas</p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="w-3 h-3 rounded-full bg-error shadow-[0_0_8px_#ffb4ab]"></span>
+<div class="flex-1">
+<p class="text-label-sm font-bold text-on-surface">Vencimentos</p>
+<p class="text-[10px] text-on-surface-variant">Aluguel, Cart&atilde;o, Contas</p>
+</div>
+</div>
+</div>
+<div class="mt-xl pt-lg border-t border-outline-variant/20">
+<h4 class="text-label-sm font-bold text-on-surface-variant uppercase tracking-widest mb-md">Pr&oacute;ximo Vencimento</h4>
+<div class="p-sm bg-error/10 border border-error/20 rounded-md flex justify-between items-center">
+<div>
+<p class="text-label-sm font-bold">Aluguel da Casa</p>
+<p class="text-[10px] text-error">Vence em 2 dias</p>
+</div>
+<span class="font-display-lg text-title-md text-error">R$ 1.850</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-md mt-xl border-t border-outline-variant/10 bg-surface-container-lowest">
+<div class="flex flex-col md:flex-row justify-between items-center px-xl max-w-7xl mx-auto gap-md">
+<div class="flex items-center gap-xs">
+<span class="font-title-md text-title-md text-primary">Green Wallet</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">&copy; 2024 Precision Finance</span>
+</div>
+<div class="flex gap-lg">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Pol&iacute;tica de Privacidade</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Termos de Servi&ccedil;o</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Seguran&ccedil;a</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- FAB -->
+<button class="fixed bottom-lg right-lg w-16 h-16 bg-gradient-to-br from-primary to-emerald-600 rounded-full flex items-center justify-center text-white shadow-2xl hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<script>
+    function togglePopover(id) {
+        const popover = document.getElementById(id);
+        const isHidden = popover.classList.contains('hidden');
+        
+        document.querySelectorAll('[id^="popover-"]').forEach(p => p.classList.add('hidden'));
+        
+        if(isHidden) {
+            popover.classList.remove('hidden');
+        }
+    }
+
+    window.addEventListener('click', function(e) {
+        if (!e.target.closest('.relative')) {
+            document.querySelectorAll('[id^="popover-"]').forEach(p => p.classList.add('hidden'));
+        }
+    });
+
+    function toggleView(viewType) {
+        const viewMes = document.getElementById('viewMesWrapper');
+        const viewDia = document.getElementById('viewDia');
+        
+        const btnMes = document.getElementById('btnViewMes');
+        const btnSemana = document.getElementById('btnViewSemana');
+        const btnDia = document.getElementById('btnViewDia');
+        
+        // Reset all buttons to inactive state
+        [btnMes, btnSemana, btnDia].forEach(btn => {
+            btn.className = 'px-md py-xs rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface';
+        });
+
+        if(viewType === 'mes') {
+            viewMes.style.display = 'block';
+            viewDia.style.display = 'none';
+            btnMes.className = 'px-md py-xs rounded-full font-label-sm text-label-sm bg-secondary text-white font-bold';
+        } else if(viewType === 'dia' || viewType === 'semana') {
+            viewMes.style.display = 'none';
+            viewDia.style.display = 'flex';
+            const activeBtn = viewType === 'dia' ? btnDia : btnSemana;
+            activeBtn.className = 'px-md py-xs rounded-full font-label-sm text-label-sm bg-secondary text-white font-bold';
+        }
+    }
+</script>
+<!-- Modal Nova Transacao -->
+<div id="modalNovaTransacao" class="hidden fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-center justify-center p-md transition-opacity">
+    <div class="glass-surface p-lg rounded-xl max-w-md w-full relative border border-outline-variant/30 glow-secondary">
+        <button onclick="document.getElementById('modalNovaTransacao').classList.add('hidden')" class="absolute top-md right-md text-on-surface-variant hover:text-white">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <h2 class="font-headline-lg text-title-md mb-md text-on-surface">Novo Lan&ccedil;amento</h2>
+        <div class="space-y-md">
+            <div><label class="text-label-sm text-on-surface-variant block mb-1">Tipo</label>
+            <select class="w-full bg-surface-container-highest p-sm rounded-lg border-none text-on-surface outline-none focus:ring-1 focus:ring-primary"><option>Despesa</option><option>Receita</option></select></div>
+            <div><label class="text-label-sm text-on-surface-variant block mb-1">Valor (R$)</label>
+            <input type="number" class="w-full bg-surface-container-highest p-sm rounded-lg border-none text-on-surface outline-none focus:ring-1 focus:ring-primary" placeholder="0.00"></div>
+            <div><label class="text-label-sm text-on-surface-variant block mb-1">Categoria</label>
+            <select class="w-full bg-surface-container-highest p-sm rounded-lg border-none text-on-surface outline-none focus:ring-1 focus:ring-primary"><option>Alimenta&ccedil;&atilde;o</option><option>Sal&aacute;rio</option><option>Compras</option></select></div>
+            <div><label class="text-label-sm text-on-surface-variant block mb-1">Data</label>
+            <input type="date" class="w-full bg-surface-container-highest p-sm rounded-lg border-none text-on-surface outline-none focus:ring-1 focus:ring-primary"></div>
+            <button onclick="document.getElementById('modalNovaTransacao').classList.add('hidden')" class="w-full mt-sm py-sm rounded-lg font-bold text-on-primary bg-primary shadow-xl">Salvar Lan&ccedil;amento</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Resumo Dia -->
+<div id="modalResumoDia" class="hidden fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-center justify-center p-md transition-opacity">
+    <div class="glass-surface p-lg rounded-xl max-w-md w-full relative border border-outline-variant/30">
+        <button onclick="document.getElementById('modalResumoDia').classList.add('hidden')" class="absolute top-md right-md text-on-surface-variant hover:text-white">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <h2 class="font-headline-lg text-title-md mb-md text-on-surface">Transa&ccedil;&otilde;es do Dia</h2>
+        
+        <div class="space-y-sm">
+            <div class="p-sm bg-surface-container-low rounded-lg flex items-center justify-between border-l-4 border-error">
+                <div class="flex flex-col">
+                    <span class="font-bold text-on-surface">Aluguel da Casa</span>
+                    <span class="text-xs text-on-surface-variant">Moradia</span>
+                </div>
+                <span class="font-bold text-error">-R$ 1.850,00</span>
+            </div>
+            <div class="p-sm bg-surface-container-low rounded-lg flex items-center justify-between border-l-4 border-primary">
+                <div class="flex flex-col">
+                    <span class="font-bold text-on-surface">Sal&aacute;rio</span>
+                    <span class="text-xs text-on-surface-variant">Rendimentos</span>
+                </div>
+                <span class="font-bold text-primary">+R$ 4.200,00</span>
+            </div>
+        </div>
+        
+        <button onclick="document.getElementById('modalResumoDia').classList.add('hidden')" class="w-full mt-md py-sm rounded-lg font-bold text-on-surface bg-surface-variant/30 hover:bg-surface-variant/50 transition-all">Fechar</button>
+    </div>
+</div>
+</body></html>
+
