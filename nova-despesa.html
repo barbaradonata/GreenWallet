@@ -351,9 +351,9 @@ PT
 </header>
 <!-- Transaction Type Selector -->
 <div class="flex flex-wrap gap-xs mb-lg bg-surface-container-low p-xs rounded-xl border border-outline-variant/10 w-fit" id="transaction-types">
-<button class="px-md py-sm rounded-lg bg-primary text-on-primary font-bold shadow-md transition-all type-btn" data-type="despesa">Despesa</button>
-<button class="px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-variant/30 font-medium transition-all type-btn" data-type="receita">Receita</button>
-<button class="px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-variant/30 font-medium transition-all type-btn" data-type="transferencia">Transfer&ecirc;ncia</button>
+<button class="px-md py-sm rounded-lg bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold shadow-md transition-all type-btn" data-type="despesa">Despesa</button>
+<button class="px-md py-sm rounded-lg font-medium transition-all type-btn text-secondary hover:bg-secondary/10" data-type="receita">Receita</button>
+<button class="px-md py-sm rounded-lg font-medium transition-all type-btn text-on-surface-variant hover:bg-surface-variant/30" data-type="transferencia">Transfer&ecirc;ncia</button>
 </div>
 <!-- Value Input (Primary Action) -->
 <section class="glass-card p-lg rounded-lg neon-glow-primary border-primary/20">
@@ -539,13 +539,18 @@ PT
             btn.addEventListener('click', () => {
                 // Reset all
                 typeBtns.forEach(b => {
-                    b.className = "px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-variant/30 font-medium transition-all type-btn";
+                    b.className = "px-md py-sm rounded-lg font-medium transition-all type-btn ";
+                    if(b.dataset.type === 'receita') b.className += "text-secondary hover:bg-secondary/10";
+                    else if(b.dataset.type === 'despesa') b.className += "text-primary hover:bg-primary/10";
+                    else b.className += "text-on-surface-variant hover:bg-surface-variant/30";
                 });
                 // Set active
                 if (btn.dataset.type === 'receita') {
-                    btn.className = "px-md py-sm rounded-lg bg-secondary text-white font-bold shadow-md transition-all type-btn";
+                    btn.className = "px-md py-sm rounded-lg bg-gradient-to-r from-secondary to-emerald-600 text-white font-bold shadow-md transition-all type-btn";
+                } else if (btn.dataset.type === 'despesa') {
+                    btn.className = "px-md py-sm rounded-lg bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold shadow-md transition-all type-btn";
                 } else {
-                    btn.className = "px-md py-sm rounded-lg bg-primary text-on-primary font-bold shadow-md transition-all type-btn";
+                    btn.className = "px-md py-sm rounded-lg bg-surface-variant text-on-surface font-bold shadow-md transition-all type-btn";
                 }
             });
         });
