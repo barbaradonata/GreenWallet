@@ -109,9 +109,9 @@
             overflow-x: hidden;
         }
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--glass-fill, rgba(255, 255, 255, 0.03));
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(211, 193, 213, 0.1);
+            border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.08));
         }
         .glass-card:hover {
             background: rgba(255, 255, 255, 0.06);
@@ -246,7 +246,7 @@
 }
 </style>
 </head>
-<body class="font-body-md text-body-md antialiased">
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased">
 <!-- Side Navigation Bar -->
 <nav class="h-screen w-64 fixed left-0 top-0 z-50 bg-surface-container-lowest/80 dark:bg-surface-container-lowest/80 backdrop-blur-md border-r border-outline-variant/10 shadow-xl flex flex-col py-md hidden md:flex">
 <div class="px-md mb-xl">

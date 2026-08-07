@@ -6,8 +6,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Geist:wght@400;500;600&amp;family=Inter:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <style>
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--glass-fill, rgba(255, 255, 255, 0.03));
+            border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.08));
             backdrop-filter: blur(20px);
             transition: all 0.3s ease-in-out;
         }
@@ -229,7 +229,7 @@
 }
 </style>
 </head>
-<body class="font-body-md text-on-surface selection:bg-primary/30">
+<body class="bg-background font-body-md text-on-surface selection:bg-primary/30">
 <!-- Side Navigation Bar -->
 <nav class="h-screen w-64 fixed left-0 top-0 z-50 bg-surface-container-lowest/80 dark:bg-surface-container-lowest/80 backdrop-blur-md border-r border-outline-variant/10 shadow-xl flex flex-col py-md hidden md:flex">
 <div class="px-md mb-xl">
